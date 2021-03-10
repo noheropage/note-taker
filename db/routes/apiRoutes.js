@@ -9,14 +9,20 @@ module.exports = (app) => {
     app.get('/api/notes', (req, res) => res.json(db));
 
     app.post('/api/notes', (req, res) => {
-        req.id = generateUniqueID();
-        req.body['id'] = req.id
+        let id = generateUniqueID();
+        req.body['id'] = id
         db.push(req.body)
         res.json(true)
     })
 
-    app.delete('/api/notes', (req, res) => {
-        
+    app.delete(`/api/notes/:id`, (req, res) => {
+        const deletedNote = req.params.id;
+        for (let i=0; i < db.length; i++){
+            if (deletedNote === db[i].id) {
+                db.splice(i, 1)
+                break;
+            }
+        }
+        return res.json(false)
     })
-    // TODO: delete function?
 }
