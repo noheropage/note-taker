@@ -23,6 +23,5 @@ module.exports = (app) => {
                 break;
             }
         }
-        return res.json(false)
     })
 }
