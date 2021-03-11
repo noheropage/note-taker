@@ -1,5 +1,6 @@
 const db = require('../db.json')
 const crypto = require('crypto')
+const { json } = require('express')
 
 const generateUniqueID = () => {
         return crypto.randomBytes(8).toString('hex')
@@ -23,5 +24,6 @@ module.exports = (app) => {
                 break;
             }
         }
+        return res.json(false)
     })
 }
