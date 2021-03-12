@@ -6,10 +6,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// include css and js files on the server
 app.use(express.static('public'));
 
-require('./db/routes/apiRoutes')(app)
-require('./db/routes/htmlRoutes')(app)
+require('./routes/apiRoutes')(app)
+require('./routes/htmlRoutes')(app)
 
 app.listen(PORT, () => {
     console.log(`App listening on PORT: ${PORT}`);
